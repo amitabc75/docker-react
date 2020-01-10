@@ -20,7 +20,7 @@ before_install:
 script:
     - docker run -e CI=true amitabc75/docker-react npm run test
     
-// deply to aws's elastic bean stalk
+// deply to aws's elastic bean stalk through the below updates.
 deploy:
     provider: elasticbeanstalk
     region: "us-east-2"
