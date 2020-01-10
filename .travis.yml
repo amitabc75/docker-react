@@ -1,26 +1,10 @@
-// getting super level perms access
 sudo: required
-
-// we tell travis that we need a copy of docker
 services:
     - docker
-    
-// for a list of steps that run before we run or deploy our project
-// so we build docker here
-// we can use any tag name as it will be used internally.
 before_install:
     - docker build -t amitabc75/docker-react -f Dockerfile.dev .
-    
-// command to run the test suite
-// for any of the commands if ther exit code is anything other
-// than 0 travis will think that the test suite failed.
-// and it expects the test to run and complete. whereas the 
-// default behavior of npm run test sits for user input and 
-// does not return automatically after it completes.
 script:
     - docker run -e CI=true amitabc75/docker-react npm run test
-    
-// deply to aws's elastic bean stalk through the below updates.
 deploy:
     provider: elasticbeanstalk
     region: "us-east-2"
